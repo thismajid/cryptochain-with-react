@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import blockchain from "../../assets/blockchain.png";
+import Block from "./Block/Block";
 
 const Blocks = () => {
   const [blocks, setBlocks] = useState([]);
@@ -20,13 +21,9 @@ const Blocks = () => {
         <img src={blockchain} alt="blockchain" />
         <h1>Cryptochain</h1>
       </div>
-      {blocks.map((block) => {
-        return (
-          <div className="block" key={block.hash}>
-            {block.hash}
-          </div>
-        );
-      })}
+      {blocks.map((block) => (
+        <Block key={block.hash} block={block} />
+      ))}
     </div>
   );
 
