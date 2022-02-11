@@ -1,19 +1,36 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import blockchain from "../../assets/blockchain.png";
 import Block from "./Block/Block";
+import { getBlocksReq } from "../../services/requestService";
+import { toast } from "react-toastify";
 
 const Blocks = () => {
   const [blocks, setBlocks] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:1372/api/blocks")
-      .then((res) => {
-        setBlocks(res.data);
-      })
-      .catch((err) => console.log(err));
+    getBlocks();
   }, []);
+
+  const notifyError = (msg) => {
+    toast.error(msg, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const getBlocks = async () => {
+    try {
+      const { data } = await getBlocksReq();
+      setBlocks(data);
+    } catch (err) {
+      notifyError("Something went wrong ...");
+    }
+  };
 
   return (
     <div className="blocks">

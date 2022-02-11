@@ -141,7 +141,7 @@ body {
 }
 
 .transaction-pool button {
-  background-color: rgba(126, 126, 126, 0.8);
+  background-color: rgba(41, 128, 188, 0.8);
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -157,6 +157,5 @@ body {
 }
 
 .goToHome {
-  margin-left: 10px;
   background-color: rgba(126, 126, 126, 0.8) !important;
 }

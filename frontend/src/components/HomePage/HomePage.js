@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Blocks from "../Blocks/Blocks";
 import wallet from "../../assets/wallet.png";
 import { FaKey, FaCoins } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { getWalletInfoReq } from "../../services/requestService";
+import { toast } from "react-toastify";
 
 const HomePage = () => {
   const [walletInfo, setWalletInfo] = useState({
@@ -12,13 +13,30 @@ const HomePage = () => {
   });
 
   useEffect(() => {
-    axios
-      .get("http://localhost:1372/api/wallet-info")
-      .then((res) => {
-        setWalletInfo(res.data);
-      })
-      .then((err) => console.log(err));
+    getWalletInfo();
   }, []);
+
+  const notifyError = (msg) => {
+    toast.error(msg, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const getWalletInfo = async () => {
+    try {
+      const { data } = await getWalletInfoReq();
+      setWalletInfo(data);
+    } catch (err) {
+      notifyError("Something went wrong ...");
+    }
+  };
+
   return (
     <>
       <div className="wallet">

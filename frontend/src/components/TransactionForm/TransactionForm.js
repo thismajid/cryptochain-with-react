@@ -1,6 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { postTransactionReq } from "../../services/requestService";
+import { toast } from "react-toastify";
 
 const TransactionForm = ({ history }) => {
   const [transaction, setTransaction] = useState({
@@ -8,22 +9,46 @@ const TransactionForm = ({ history }) => {
     amount: "",
   });
 
+  const notifyError = (msg) => {
+    toast.error(msg, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const notifySuccess = (msg) => {
+    toast.success(msg, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const changeHandler = (e) => {
     setTransaction({ ...transaction, [e.target.name]: e.target.value });
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (transaction.recipient && transaction.amount) {
-      const { data } = await axios.post(
-        "http://localhost:1372/api/transact",
-        transaction
-      );
-      if (data.type && data.type === "error") {
-        alert(data.message);
-      } else {
-        history.push("/transaction-pool");
+    try {
+      if (transaction.recipient && transaction.amount) {
+        const { data } = await postTransactionReq(transaction);
+        notifySuccess("Money Sent Successfully");
+        setTimeout(() => {
+          history.push("/transaction-pool");
+        }, 6000);
       }
+    } catch (err) {
+      notifyError("Something went wrong ...");
     }
   };
 
@@ -45,7 +70,7 @@ const TransactionForm = ({ history }) => {
           onChange={changeHandler}
         />
         <button>Send</button>
-        <Link to="/">
+        <Link to="/" style={{ marginLeft: "10px" }}>
           <button className="goToHome">Back to home page</button>
         </Link>
       </form>
