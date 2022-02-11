@@ -1,7 +1,8 @@
-import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Blocks from "./components/Blocks/Blocks";
+import wallet from "./assets/wallet.png";
+import { FaKey, FaCoins } from "react-icons/fa";
 
 function App() {
   const [walletInfo, setWalletInfo] = useState({ address: "", balance: "" });
@@ -16,13 +17,25 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>wallet info : </h1>
-      <h3>Address : {walletInfo.address}</h3>
-      <h3>Balance : {walletInfo.balance}</h3>
-      <br />
+    <>
+      <div className="wallet">
+        <div>
+          <img src={wallet} alt="wallet" />
+        </div>
+        <div>
+          <h1>Your Wallet</h1>
+          <div className="address">
+            <FaKey className="icon" />
+            Address: {walletInfo.address}
+          </div>
+          <div className="balance">
+            <FaCoins className="icon" />
+            Balance: {walletInfo.address}
+          </div>
+        </div>
+      </div>
       <Blocks />
-    </div>
+    </>
   );
 }
 
