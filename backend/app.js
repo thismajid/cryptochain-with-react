@@ -10,10 +10,10 @@ app.use(express.json());
 
 app.use("/api", cors("*"), routers);
 
-const rootPort = 1372;
-let PORT = 1372;
+const rootPort = 3001;
+let PORT = 3001;
 
-tcpPortUsed.check(1372, "127.0.0.1").then(function (inUse) {
+tcpPortUsed.check(3001, "127.0.0.1").then(function (inUse) {
   if (inUse) {
     PORT += Math.ceil(Math.random() * 1000);
   }
