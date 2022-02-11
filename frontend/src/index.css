@@ -112,6 +112,8 @@ body {
   margin: auto;
   margin-bottom: 15px;
   font-size: 20px;
+  border-radius: 5px;
+  border: 1px solid rgb(192, 191, 191);
 }
 
 .form button {
@@ -139,7 +141,7 @@ body {
 }
 
 .transaction-pool button {
-  background-color: rgba(41, 128, 188, 0.8);
+  background-color: rgba(126, 126, 126, 0.8);
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -152,4 +154,9 @@ body {
 
 .transaction-pool a {
   text-decoration: none;
+}
+
+.goToHome {
+  margin-left: 10px;
+  background-color: rgba(126, 126, 126, 0.8) !important;
 }

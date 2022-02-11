@@ -8,13 +8,17 @@ const TransactionPool = () => {
   const [transactionMap, setTransactionMap] = useState({});
 
   useEffect(() => {
+    getTransactions();
+  }, []);
+
+  const getTransactions = () => {
     axios
       .get("http://localhost:1372/api/transaction-pool-map")
       .then((res) => {
         setTransactionMap(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  };
 
   return (
     <div className="transaction-pool">

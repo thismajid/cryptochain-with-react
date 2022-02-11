@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const ConductTransaction = ({ history }) => {
+const TransactionForm = ({ history }) => {
   const [transaction, setTransaction] = useState({
     recipient: "",
     amount: "",
@@ -45,12 +45,12 @@ const ConductTransaction = ({ history }) => {
           onChange={changeHandler}
         />
         <button>Send</button>
-        <Link to="/" style={{ marginLeft: "10px" }}>
-          <button>Back to home page</button>
+        <Link to="/">
+          <button className="goToHome">Back to home page</button>
         </Link>
       </form>
     </div>
   );
 };
 
-export default ConductTransaction;
+export default TransactionForm;
