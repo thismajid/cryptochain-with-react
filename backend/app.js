@@ -1,5 +1,6 @@
 const express = require("express");
 const tcpPortUsed = require("tcp-port-used");
+const cors = require("cors");
 
 const routers = require("./routes");
 const { syncOnConnect } = require("./controllers");
@@ -7,10 +8,7 @@ const { syncOnConnect } = require("./controllers");
 const app = express();
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Welcome to cryptochain");
-});
-app.use("/api", routers);
+app.use("/api", cors("*"), routers);
 
 const rootPort = 1372;
 let PORT = 1372;

@@ -17,6 +17,7 @@
   "dependencies": {
     "@types/jest": "^27.4.0",
     "axios": "^0.25.0",
+    "cors": "^2.8.5",
     "elliptic": "^6.5.4",
     "express": "^4.17.2",
     "hex-to-binary": "^1.0.1",
