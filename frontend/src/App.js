@@ -25,8 +25,11 @@ function App() {
         </div>
         <div>
           <h1>Your Wallet</h1>
-          <Link to="transact">
+          <Link to="transaction">
             <button>Send Money</button>
+          </Link>
+          <Link to="transaction-pool" style={{ marginLeft: "10px" }}>
+            <button>See Pool</button>
           </Link>
           <div className="address">
             <FaKey className="icon" />

@@ -123,3 +123,33 @@ body {
   font-size: 20px;
   cursor: pointer;
 }
+
+.transaction-pool {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  margin: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 20%);
+}
+
+.transaction-pool div {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.transaction-pool button {
+  background-color: rgba(41, 128, 188, 0.8);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+}
+
+.transaction-pool a {
+  text-decoration: none;
+}

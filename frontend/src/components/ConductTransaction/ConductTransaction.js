@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const ConductTransaction = () => {
+const ConductTransaction = ({ history }) => {
   const [transaction, setTransaction] = useState({
     recipient: "",
     amount: "",
@@ -21,7 +22,7 @@ const ConductTransaction = () => {
       if (data.type && data.type === "error") {
         alert(data.message);
       } else {
-        alert("success");
+        history.push("/transaction-pool");
       }
     }
   };
@@ -44,6 +45,9 @@ const ConductTransaction = () => {
           onChange={changeHandler}
         />
         <button>Send</button>
+        <Link to="/" style={{ marginLeft: "10px" }}>
+          <button>Back to home page</button>
+        </Link>
       </form>
     </div>
   );
