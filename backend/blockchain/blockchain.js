@@ -77,8 +77,13 @@ class Blockchain {
             console.error("invalid transaction");
             return false;
           }
+          const mergedChain = [
+            ...this.chain,
+            ...chain.slice(this.chain.length),
+          ];
+
           const trueBalnace = Wallet.calculateBalance({
-            chain: this.chain,
+            chain: mergedChain(0, index),
             address: transaction.input.address,
           });
 
